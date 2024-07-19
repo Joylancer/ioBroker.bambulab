@@ -108,7 +108,7 @@ class Bambulab extends utils.Adapter {
 					this.log.info(`Response to control command ${JSON.stringify(message)}`);
 					// @ts-ignore if system does not exist function will return false and skip
 				} else if (message && message.system){ // Handle values for system messages, used to acknowledge messages
-					this.log.info(`System Message ${JSON.stringify(message)}`);
+					this.log.debug(`System Message ${JSON.stringify(message)}`);
 				} else if (message && message['t_utc']){ // Handle values for system messages, used to acknowledge messages
 					// this.log.info(`System Message ${JSON.stringify(message)}`);
 					// TimeStamp Message, ignore
@@ -124,7 +124,7 @@ class Bambulab extends utils.Adapter {
 			});
 
 			client.on('error', (error) => {
-				this.log.error(`Connection issue occurred ${error}`);
+				this.log.debug(`Connection issue occurred ${error}`);
 				// Close MQTT connection
 				client.end();
 
@@ -137,7 +137,7 @@ class Bambulab extends utils.Adapter {
 			});
 
 		} catch (e) {
-			this.log.error(`[MQTT Message handler] ${e} | ${e.stack}`);
+			this.log.debug(`[MQTT Message handler] ${e} | ${e.stack}`);
 		}
 	}
 
